@@ -1,9 +1,7 @@
 package eu.ehri.termexpansion;
 
-import java.net.MalformedURLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 //import eu.ehri.search.ProcessQuery;
 
@@ -29,7 +27,7 @@ public class Workflows {
 	 * It takes as argument a user query and returns a JSON object with the
 	 * expanded terms in a list.
 	 */
-	public JSONObject workflowExp(GetQuery userinput) {
+	public JSONObject workflowExp(GetQuery userinput) throws JSONException {
 		// solrOut = null;
 		System.out.println();
 		System.out.println("userinput: " + userinput.getQuery());
