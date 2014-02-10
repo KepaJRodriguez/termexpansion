@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.json.JSONException;
+
 /*
  * Uses n-grams to find shingles in multi-word queries
  * n-grams are looked in geonames and thesaurus
@@ -21,7 +23,7 @@ import java.util.List;
 	
 	
 	
-	public List<String> expandTerms(String input) {
+	public List<String> expandTerms(String input) throws JSONException {
 		List<String> inputAsList = new ArrayList<String>();
 		inputAsList = Arrays.asList(input.split(" "));
 	
