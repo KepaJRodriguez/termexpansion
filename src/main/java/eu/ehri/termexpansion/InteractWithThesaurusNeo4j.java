@@ -241,13 +241,17 @@ public class InteractWithThesaurusNeo4j {
 		List<String> nodes = new ArrayList<String>();
 		List<String> splittedInput = Arrays.asList(inputNodes.split("\n"));
 
-		for (int i = 0; i < splittedInput.size(); i++) {
-			Pattern pattern = Pattern.compile(".+self.+");
-			Matcher matcher = pattern.matcher(splittedInput.get(i));
-			if (matcher.find()) {
-				String nod = matcher.group(0).toString().split("node/")[1]
-						.split("\"")[0];
-				nodes.add(nod);
+		JSONObject jsonObj = new JSONObject(inputNodes);
+		JSONArray dataArray = jsonObj.getJSONArray("data");
+
+		if (dataArray.length() > 0) {
+			for (int i = 0; i < dataArray.length(); i++) {
+				JSONObject record = dataArray.getJSONArray(i).getJSONObject(0);
+				String id = record.getString("self");
+				System.out.println("SELF " + id);
+				String node = id.split("node/")[1].split("\"")[0];
+				System.out.println("NODE " + node);
+				nodes.add(node);
 			}
 		}
 		return nodes;
@@ -345,7 +349,7 @@ public class InteractWithThesaurusNeo4j {
 		String response = webResource.accept(MediaType.APPLICATION_JSON)
 				.type(MediaType.APPLICATION_JSON).entity(jobject.toString())
 				.post(String.class);
-		System.out.println("RESPONSE " + response);
+		// System.out.println("RESPONSE " + response);
 		return response;
 	}
 
