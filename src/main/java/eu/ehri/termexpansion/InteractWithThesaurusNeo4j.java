@@ -349,7 +349,6 @@ public class InteractWithThesaurusNeo4j {
 		String response = webResource.accept(MediaType.APPLICATION_JSON)
 				.type(MediaType.APPLICATION_JSON).entity(jobject.toString())
 				.post(String.class);
-		// System.out.println("RESPONSE " + response);
 		return response;
 	}
 
